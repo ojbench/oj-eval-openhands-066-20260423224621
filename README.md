@@ -1,59 +1,10 @@
-# Problem 066 - Conless 的 any_ptr
+# Conless 的 any_ptr
 
-**ACMOJ Problem ID**: 2090
+## 题面
 
-## Table of Contents
+本题的题面和下发数据可以在 [JBox]() 下载。
 
-- [Problem 066 - Conless 的 any_ptr](#problem-066-conless-的-any_ptr)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-    - [Background](#background)
-  - [Assignment Description](#assignment-description)
-    - [Grade Composition](#grade-composition)
-  - [Assignment Requirements](#assignment-requirements)
-    - [Input Format](#input-format)
-    - [Output Format](#output-format)
-    - [Samples](#samples)
-    - [Data Constraints](#data-constraints)
-  - [Per-Testcase Resource Limits](#per-testcase-resource-limits)
-  - [Test Data](#test-data)
-  - [Submission Requirements](#submission-requirements)
-    - [OJ Git Repository Compilation Process](#oj-git-repository-compilation-process)
-    - [Git Configuration Requirements](#git-configuration-requirements)
-    - [Submission Guidelines](#submission-guidelines)
-    - [Evaluation Notes](#evaluation-notes)
-    - [Academic Integrity](#academic-integrity)
-
-## Introduction
-
-### Background
-
-Implement type-erased smart pointer (any_ptr) supporting any type, with reference counting and garbage collection.
-
-## Assignment Description
-
-### Grade Composition
-
-| Grading Component | Percentage |
-| :--: | :--: |
-| Pass **2090. Conless 的 any_ptr** | 80% |
-| Code Review | 20% |
-
-Here are several points that need clarification:
-
-- In the Code Review, we will **strictly examine your code style and repository organization structure, etc.**
-
-- This assignment provides some sample data for testing, stored in the `/workspace/data/066/data_test/` directory. Note that these are not the test cases on the Online Judge. Passing all local test cases does not guarantee that you will pass the OJ tests.
-
-- Besides the provided sample data, we also encourage you to design your own test data based on your program logic to assist debugging.
-
-## Assignment Requirements
-
-### Problem Description
-
-本题的题面和下发数据可以在 [attachment]any_ptr.zip[/attachment] / [JBox](https://jbox.sjtu.edu.cn/l/u1V9Fq) 下载。<a href="https://wwqd.lanzoul.com/iQy5d1ikpcli">备用下载地址</a>。
-
-和你们一样，正在当程设助教的 ~~anonymous~~ 大一也辛苦地学习了一年 C++，培养了扎实的代码能力。进入大二，由于课程安排，她在平时作业中更多使用的语言变成了 Python；她这才发现 C++ 写起来有多么的麻烦：静态类型、内存管理……
+和你们一样，正在当程设助教的 lxy 大一也辛苦地学习了一年 C++，培养了扎实的代码能力。进入大二，由于课程安排，她在平时作业中更多使用的语言变成了 Python；她这才发现 C++ 写起来有多么的麻烦：静态类型、内存管理……
 
 Conless 看她这么痛苦，只好接下了帮她“简化”C++的任务，说是简化，其实也就是写个可以存放任意类型的智能指针 any_ptr 类。这样一来，以下操作就是有可能的了：
 
@@ -64,7 +15,7 @@ a = make_any_ptr("Hello, World!");
 cout << a.unwrap<string>() << endl; // Hello, World!
 ```
 
-除此以外，该类型还可以根据引用计数自动释放空间（类似 `std::shared_ptr` 类型），实现垃圾回收。但是 Conless 急着去踢球，就把这个任务踢给你们了。
+除此以外，该类型还可以根据引用计数自动释放空间（类似 `std::shared_ptr` 类型），实现垃圾回收。但是 Conless 急着去踢球，就把这个任务扔给你们了。
 
 下面是代码模版，你只需要实现 any_ptr 类的各成员函数。
 
@@ -110,11 +61,8 @@ class any_ptr {
    *  std::cout << a << std::endl; // valid
    * @example
    *  int *p = new int(1);
-   *  {
-   *    any_ptr a = p;
-   *  }
-   *  std::cout << *p << std::endl; // invalid
-   * 
+   *  any_ptr a = p;
+    *  {
    */
   ~any_ptr() {}
 
@@ -158,19 +106,7 @@ template <class T> any_ptr make_any_ptr(const T &t) { return any_ptr(new T(t)); 
 #endif
 ```
 
-### Input Format
-
-见下发文件中的 [example1.cpp](https://jbox.sjtu.edu.cn/l/u1V9Fq) 和 [example2.cpp](https://jbox.sjtu.edu.cn/l/u1V9Fq)
-
-### Output Format
-
-见下发文件中的注释
-
-### Samples
-
-No sample data provided for this problem.
-
-### Data Constraints
+## 数据范围
 
 <table border="1" cellpadding="1" cellspacing="1">
 	<thead>
@@ -190,12 +126,11 @@ No sample data provided for this problem.
     </tr>
 		<tr>
 			<td style="text-align:center"> 2 </td>
-			<td rowspan="1" style="text-align:center"> any_ptr 的析构正确性 </td>
+			<td rowspan="2" style="text-align:center"> any_ptr 的析构正确性与特殊使用 </td>
 			<td style="text-align:center"> 20% </td>
 		</tr>
 		<tr>
 			<td style="text-align:center"> 3 </td>
-			<td rowspan="1" style="text-align:center"> any_ptr 的特殊使用</td>
 			<td style="text-align:center"> 内建复杂类型 (std::vector, std::map, std::set) </td>
 			<td style="text-align:center"> 20% </td>
 		</tr>
@@ -210,68 +145,3 @@ No sample data provided for this problem.
 		</tr>
   </tbody>
 </table>
-
-## Per-Testcase Resource Limits
-
-- **Time Limit (per test case)**: 1000 ms
-- **Memory Limit (per test case)**: 512 MiB
-- **Disk Usage**: No disk usage is permitted.
-
-## Test Data
-
-The test data for this problem is located at `/workspace/data/066/data_test/`.
-
-Attachments and starter files for this problem are located at `/workspace/data/066/`.
-
-## Submission Requirements
-
-### OJ Git Repository Compilation Process
-
-For Git compilation, we will first clone the repository using a command similar to:
-```bash
-git clone <repo_url> . --depth 1 --recurse-submodules --shallow-submodules --no-local
-```
-
-Then we check if there is a `CMakeLists.txt` file. If it exists, we run (if not, a warning message will be displayed):
-```bash
-cmake .
-```
-
-Finally, we check if there is any of `GNUmakefile`/`makefile`/`Makefile` (if cmake was run previously, this will be the generated Makefile). If it exists, we run (if not, a warning message will be displayed):
-```bash
-make
-```
-
-After this process is complete, we will use the `code` file in the project root directory as the compilation result.
-
-A `CMakeLists.txt` file is provided in the project. You can use or modify it as needed. The local environment has gcc-13 and g++-13 available.
-
-### Git Configuration Requirements
-
-**IMPORTANT**: You must create a `.gitignore` file in your project root directory to avoid OJ evaluation conflicts.
-
-The `.gitignore` file should include at least the following entries:
-
-```gitignore
-CMakeFiles/
-CMakeCache.txt
-```
-
-### Submission Guidelines
-
-- The submitted code must be able to compile successfully through the above compilation process
-- The compiled executable file name must be `code`
-- The program needs to be able to read data from standard input and write results to standard output
-- Please ensure the code runs correctly within the given time and space limits
-- **You must use C++ or C language** to implement this assignment
-
-### Evaluation Notes
-
-- The evaluation system will test your program using the provided test data
-- The program output must exactly match the expected output (including format)
-- Exceeding time or memory limits will be judged as the corresponding error type
-- Please pay attention to the overall time performance of your code and the time complexity of each part of your algorithm.
-
-### Academic Integrity
-
-If any violations are found during evaluation or code review (including but not limited to using unconventional methods to pass test cases), your final score may be significantly reduced or become **0 points**.
